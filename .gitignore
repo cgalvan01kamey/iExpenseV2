@@ -1,0 +1,64 @@
+# -----------------------------
+# Xcode
+# -----------------------------
+# Build generated
+build/
+DerivedData/
+
+# User settings (local)
+*.xcuserdatad
+*.xcscmblueprint
+*.moved-aside
+*.xccheckout
+*.xcuserstate
+
+# Workspace settings
+*.xcworkspace
+*.xcodeproj/project.xcworkspace/
+
+# Swift Package Manager
+# Packages folder can be ignored, SPM will resolve dependencies
+.build/
+Packages/
+# Xcode 11+ uses .swiftpm for resolved versions
+.swiftpm/xcode/package.resolved
+
+# CocoaPods (if used)
+Pods/
+
+# Carthage (if used)
+Carthage/Build/
+
+# Fastlane (if used)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+# -----------------------------
+# System files
+# -----------------------------
+.DS_Store
+*.swp
+*.lock
+*.log
+*.tmp
+*.bak
+
+# -----------------------------
+# Other
+# -----------------------------
+# Secrets or API keys (never commit these)
+*.env
+*.key
+
+# Xcode
+DerivedData/
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+*.xcuserstate
+*.xcscmblueprint
+
+# SwiftUI previews
+*.preview-thumbnails
+
