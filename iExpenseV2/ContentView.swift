@@ -6,33 +6,34 @@
 //
 
 import SwiftUI
-struct SecondView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    let name: String
-    
-    var body: some View {
-        Text("Welcome \(name)")
-            .font(.largeTitle)
-        
-        Button("Dismiss") {
-            dismiss()
-        }
-    }
-}
 
 struct ContentView: View {
-    @State var showingSheet = false
+    @State private var numbers: [Int] = []
+    @State private var currentNumber = 1
     var body: some View {
-        VStack {
-            Button("Show Sheet") {
-                showingSheet.toggle()
+        NavigationStack {
+            VStack {
+                List {
+                    ForEach(numbers, id: \.self) {number in
+                        Text("Row \(number)")
+                    }
+                    .onDelete(perform: removeRows)
+                }
+                
+                Button("Add Number") {
+                    numbers.append(currentNumber)
+                    currentNumber += 1
+                }
             }
-            .sheet(isPresented: $showingSheet) {
-                SecondView(name: "Carlos")
+            .toolbar {
+                EditButton()
             }
+            .padding()
         }
-        .padding()
+    }
+    
+    private func removeRows(at offsets: IndexSet) {
+        numbers.remove(atOffsets: offsets)
     }
 }
 
