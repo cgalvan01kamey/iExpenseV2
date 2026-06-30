@@ -8,32 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var numbers: [Int] = []
-    @State private var currentNumber = 1
+    @State var count = UserDefaults.standard.integer(forKey: "TapCount")
     var body: some View {
-        NavigationStack {
-            VStack {
-                List {
-                    ForEach(numbers, id: \.self) {number in
-                        Text("Row \(number)")
-                    }
-                    .onDelete(perform: removeRows)
-                }
-                
-                Button("Add Number") {
-                    numbers.append(currentNumber)
-                    currentNumber += 1
-                }
+        Button {
+            withAnimation {
+                count += 1
             }
-            .toolbar {
-                EditButton()
-            }
-            .padding()
+            UserDefaults.standard.set(count, forKey: "TapCount")
+        } label: {
+            Text("Tap Count: \(count)")
+                .font(.largeTitle)
         }
-    }
-    
-    private func removeRows(at offsets: IndexSet) {
-        numbers.remove(atOffsets: offsets)
+
     }
 }
 
