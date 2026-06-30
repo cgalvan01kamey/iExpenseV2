@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var count = UserDefaults.standard.integer(forKey: "TapCount")
+    @AppStorage("tapCount") private var tapCount = 0
     var body: some View {
         Button {
             withAnimation {
-                count += 1
+                tapCount += 1
             }
-            UserDefaults.standard.set(count, forKey: "TapCount")
         } label: {
-            Text("Tap Count: \(count)")
+            Text("Tap Count: \(tapCount)")
                 .font(.largeTitle)
         }
 
