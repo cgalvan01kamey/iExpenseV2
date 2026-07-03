@@ -12,7 +12,8 @@ enum ExpenseType: String {
     case personal = "Personal"
 }
 
-struct ExpenseItem {
+struct ExpenseItem: Identifiable {
+    let id = UUID()
     let name: String
     let type: ExpenseType
     let amount: Double
