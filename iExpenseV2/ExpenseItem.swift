@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ExpenseType: String {
+enum ExpenseType: String, CaseIterable {
     case business = "Business"
     case personal = "Personal"
 }
