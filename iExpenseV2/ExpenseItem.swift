@@ -21,21 +21,31 @@ struct ExpenseItem: Identifiable, Codable {
 
 @Observable
 class Expenses {
-    var items = [ExpenseItem]() {
+    var personalItems = [ExpenseItem]() {
         didSet {
-            if let encoded = try? JSONEncoder().encode(items) {
-                UserDefaults.standard.set(encoded, forKey: "Items")
+            if let encoded = try? JSONEncoder().encode(personalItems) {
+                UserDefaults.standard.set(encoded, forKey: "PersonalItems")
+            }
+        }
+    }
+    
+    var businessItems = [ExpenseItem]() {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(businessItems) {
+                UserDefaults.standard.set(encoded, forKey: "BusinessItems")
             }
         }
     }
     
     init() {
-        if let savedItems = UserDefaults.standard.data(forKey: "Items"),
-           let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
-            items = decodedItems
-            return
+        if let personalSavedItems = UserDefaults.standard.data(forKey: "PersonalItems"),
+           let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: personalSavedItems) {
+            personalItems = decodedItems
         }
         
-        items = []
+        if let businessSavedItems = UserDefaults.standard.data(forKey: "BusinessItems"),
+           let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: businessSavedItems) {
+            businessItems = decodedItems
+        }
     }
 }

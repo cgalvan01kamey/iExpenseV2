@@ -45,7 +45,11 @@ struct AddView: View {
                             return
                         }
                         let item = ExpenseItem(name: name, type: type, amount: amount)
-                        expenses.items.append(item)
+                        if item.type == .personal {
+                            expenses.personalItems.append(item)
+                        } else {
+                            expenses.businessItems.append(item)
+                        }
                         dismiss()
                     }
                 }
